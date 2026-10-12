@@ -1,0 +1,24 @@
+Getgenv().AutoSpinConfig = getgenv().AutoSpinConfig or {
+    -- ต้องการ Auto Redeem Code ไหม? (true = เปิด / false = ปิด)
+    AutoRedeemCodes = true,
+
+    -- โค้ดที่จะรับรางวัลอัตโนมัติ (ใส่กี่โค้ดก็ได้ สามารถเพิ่มหรือลดได้เลย)
+    Codes = {
+        "Release26",
+    },
+
+    -- เลือกโหมดการหยุดสุ่ม: 
+    -- 1 = หยุดตามระดับความแรร์ (Rarity)
+    -- 2 = หยุดเมื่อได้ชื่อตระกูล (Clan) ที่กำหนดไว้
+    StopMode = 2,
+
+    -- [กรณีตั้ง StopMode = 1] เลือกระดับความแรร์ที่ต้องการ (จะหยุดเมื่อสุ่มได้ระดับนี้ขึ้นไป)
+    -- ตัวเลือก: "Common" (ทั่วไป), "Uncommon" (ไม่ทั่วไป), "Rare" (หายาก), "Legendary" (ตำนาน), "Mythic" (เทพนิยาย), "Supreme" (สูงสุด)
+    TargetRarity = "Supreme",
+
+    -- [กรณีตั้ง StopMode = 2] ระบุชื่อตระกูลที่ต้องการ (หากสุ่มเจอชื่อใดชื่อหนึ่งในนี้จะหยุดสุ่มทันที)
+    TargetClans = {
+        "Kamado",
+        "Rengoku",
+    },
+}
