@@ -1,0 +1,41 @@
+local Players = game:GetService("Players")
+
+Players.PlayerAdded:Connect(function(player)
+	-- สร้างโฟลเดอร์ leaderstats เพื่อแสดงผลบนตารางคะแนน
+	local leaderstats = Instance.new("Folder")
+	leaderstats.Name = "leaderstats"
+	leaderstats.Parent = player
+
+	-- ค่าเลเวล
+	local level = Instance.new("IntValue")
+	level.Name = "Level"
+	level.Value = 1
+	level.Parent = leaderstats
+
+	-- ค่าเงิน/เหรียญ
+	local yen = Instance.new("IntValue")
+	yen.Name = "Yen"
+	yen.Value = 100
+	yen.Parent = leaderstats
+
+	-- ค่าประสบการณ์ (EXP)
+	local exp = Instance.new("IntValue")
+	exp.Name = "EXP"
+	exp.Value = 0
+	exp.Parent = player
+
+	local maxExp = Instance.new("IntValue")
+	maxExp.Name = "MaxEXP"
+	maxExp.Value = 100
+	maxExp.Parent = player
+
+	-- ตรวจสอบการอัปเลเวลเมื่อ EXP เปลี่ยนแปลง
+	exp.Changed:Connect(function(newExp)
+		if newExp >= maxExp.Value then
+			level.Value = level.Value + 1
+			exp.Value = newExp - maxExp.Value
+			maxExp.Value = math.floor(maxExp.Value * 1.5) -- เพิ่ม EXP ที่ต้องใช้ในเลเวลถัดไป
+			print(player.Name .. " อัปเลเวลเป็น " .. level.Value .. " แล้ว!")
+		end
+	end)
+end)
